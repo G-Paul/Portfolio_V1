@@ -30,7 +30,8 @@ body.toggled {
 
 body.toggled > #title {
   opacity: 0;
-  display: none;
+  /* display: none; */
+  z-index: 3;
 }
 
 body.toggled > #subtitle {
@@ -102,7 +103,6 @@ body.toggled > #tiles > .tile:hover {
   height: 10vw;
   width: 10vw;
   margin: 0px 10px;
-  /* background-color: rgb(255, 255, 255, 0.1); */
   z-index: 3;
   pointer-events: all;
   cursor: pointer;
@@ -132,34 +132,5 @@ body.toggled > #tiles > .tile:hover {
 }
 
 .circle:hover {
-  /* background-color: rgb(255, 255, 255, 0.5); */
-  /* transform: scale(1.1); */
   animation: expanding 1s ease forwards;
-}
-
-#insta {
-  background-image: url("https://fontawesome.com/icons/instagram?f=brands&s=solid");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 12px;
-}
-
-#codepen {
-  background-image: url("https://fontawesome.com/icons/codepen?f=brands&s=solid");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 12px;
-}
-
-#github {
-  background-image: url("https://fontawesome.com/icons/github-alt?style=brands");
-  background-repeat: no-repeat;
-  background-size: 12px;
-}
-
-#linkedin {
-  background-image: url("https://fontawesome.com/icons/linkedin-in?style=brands");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 12px;
 }

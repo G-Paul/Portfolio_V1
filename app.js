@@ -5,59 +5,63 @@ let interval = null;
 const doeffect = (e) => {
   let iteration = 0;
   clearInterval(interval);
-  
+
   interval = setInterval(() => {
     e.target.innerText = e.target.innerText
       .split("")
       .map((letter, index) => {
-        if(index < iteration) {
+        if (index < iteration) {
           return e.target.dataset.value[index];
         }
-      
-        return letters[Math.floor(Math.random() * 26)]
+
+        return letters[Math.floor(Math.random() * 26)];
       })
       .join("");
-    
-    if(iteration >= e.target.dataset.value.length){ 
+
+    if (iteration >= e.target.dataset.value.length) {
       clearInterval(interval);
     }
-    
-    iteration += 1 / 3;
+
+    iteration += 1 / 4;
   }, 30);
-}
-document.querySelector("h1").onmouseover = event => doeffect(event);
-document.querySelector("h1").onclick = event => doeffect(event);
+};
+// window.onload = () => {
+//   console.log("loaded");
+//   document.getElementById("title").click();
+// }
+document.querySelector("h1").onmouseover = (event) => doeffect(event);
+document.querySelector("h1").onclick = (event) => doeffect(event);
 
 let columns = 0,
-rows = 0,
-toggled = false;
+  rows = 0,
+  toggled = false;
 
 const toggle = () => {
   toggled = !toggled;
   document.body.classList.toggle("toggled");
 };
 
-const handleOnClick = index => {
+const handleOnClick = (index) => {
   toggle();
   anime({
     targets: ".tile",
     opacity: toggled ? 0 : 1,
     delay: anime.stagger(50, {
       grid: [columns, rows],
-      from: index
-    })
+      from: index,
+    }),
   });
 };
 
-const createTile = index => {
+const createTile = (index) => {
   const tile = document.createElement("div");
   tile.classList.add("tile");
   tile.style.opacity = toggled ? 0 : 1;
-  tile.onclick = e => handleOnClick(index);
+  tile.onclick = (e) => handleOnClick(index);
   return tile;
 };
 
-const createTiles = quantity => {
+const createTiles = (quantity) => {
   Array.from(Array(quantity)).map((tile, index) => {
     wrapper.appendChild(createTile(index));
   });
@@ -65,7 +69,7 @@ const createTiles = quantity => {
 
 const createGrid = () => {
   wrapper.innerHTML = "";
-  const size = 50;
+  const size = document.body.clientWidth > 800 ? 100 : 50;
   columns = Math.floor(document.body.clientWidth / size);
   rows = Math.floor(document.body.clientHeight / size);
 
@@ -75,14 +79,14 @@ const createGrid = () => {
   createTiles(columns * rows);
 };
 
-const openLink = link => {
+const openLink = (link) => {
   window.open(link, "_blank");
 };
 
 // let index = 0;
 // let intervl = 1000;
 
-// const rand = (min, max) => 
+// const rand = (min, max) =>
 //   Math.floor(Math.random() * (max - min + 1)) + min;
 
 // const animate = star => {
@@ -97,7 +101,7 @@ const openLink = link => {
 // for(const star of document.getElementsByClassName("magic-star")) {
 //   setTimeout(() => {
 //     animate(star);
-    
+
 //     setInterval(() => animate(star), 1000);
 //   }, index++ * (intervl / 3))
 // }

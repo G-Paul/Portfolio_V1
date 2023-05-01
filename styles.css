@@ -76,7 +76,7 @@ body.toggled > #tiles > .tile:hover {
 
 #title {
   color: white;
-  font-family: "Share Tech Mono", monospace;
+  font-family: "Monospace", monospace;
   font-size: 12vw;
   display: flex;
   justify-content: center;
@@ -254,5 +254,5 @@ footer > .magic > .magic-star > svg > path {
 } */
 
 .footer:hover {
-  color: white;
+  color: rgba(255, 85, 0, 0.615);
 }

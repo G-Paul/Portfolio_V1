@@ -83,7 +83,7 @@ body.toggled > #tiles > .tile:hover {
   align-items: center;
   margin: 0px;
   transition: opacity 1200ms ease;
-  width: 75vw;
+  width: 100vw;
   z-index: 4;
 }
 

@@ -102,7 +102,7 @@ body.toggled > #tiles > .tile:hover {
   height: 10vw;
   width: 10vw;
   margin: 0px 10px;
-  background-color: rgb(255, 255, 255, 0.1);
+  /* background-color: rgb(255, 255, 255, 0.1); */
   z-index: 3;
   pointer-events: all;
   cursor: pointer;
@@ -112,23 +112,27 @@ body.toggled > #tiles > .tile:hover {
 @keyframes expanding {
   from {
     transform: scale(1);
+    background-color: rgb(255, 255, 255, 0.1);
   }
   to {
     transform: scale(1.1);
+    background-color: rgb(255, 255, 255, 0.5);
   }
 }
 
 @keyframes shrinking {
   from {
     transform: scale(1.1);
+    background-color: rgb(255, 255, 255, 0.5);
   }
   to {
     transform: scale(1);
+    background-color: rgb(255, 255, 255, 0.1);
   }
 }
 
 .circle:hover {
-  background-color: rgb(255, 255, 255, 0.5);
+  /* background-color: rgb(255, 255, 255, 0.5); */
   /* transform: scale(1.1); */
   animation: expanding 1s ease forwards;
 }

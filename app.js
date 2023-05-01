@@ -1,6 +1,6 @@
 const wrapper = document.getElementById("tiles");
 
-const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 let interval = null;
 const doeffect = (e) => {
   let iteration = 0;
@@ -14,7 +14,7 @@ const doeffect = (e) => {
           return e.target.dataset.value[index];
         }
 
-        return letters[Math.floor(Math.random() * 26)];
+        return letters[Math.floor(Math.random() * 36)];
       })
       .join("");
 

@@ -19,6 +19,7 @@ body {
   animation: background-pan 10s linear infinite;
   background: linear-gradient(to right, var(--g1), var(--g2), var(--g1));
   background-size: 200%;
+  width: 100vw;
   height: 100vh;
   overflow: hidden;
   margin: 0px;

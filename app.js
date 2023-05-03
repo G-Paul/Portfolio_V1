@@ -55,6 +55,7 @@ const handleOnClick = (index) => {
 
 const createTile = (index) => {
   const tile = document.createElement("div");
+  // tile.innerHTML("<p>GP</p>");
   tile.classList.add("tile");
   tile.style.opacity = toggled ? 0 : 1;
   tile.onclick = (e) => handleOnClick(index);

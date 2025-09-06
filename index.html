@@ -1,96 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Gunjan Paul</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-    <meta name="msapplication-TileColor" content="#da532c" />
-    <meta name="theme-color" content="#ffffff" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script>
-      window.console = window.console || function (t) {};
-    </script>
+    <meta name="description" content="Gunjan Paul's Portfolio" />
     <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
   </head>
+  <body>
+    <!-- ===== Header / Bio ===== -->
+    <header class="site-header" id="home">
+      <div class="container bio">
+        <img
+          class="bio__avatar"
+          src="assets/images/profile_pic.jpg"
+          alt="My Pic"
+          width="200"
+          height="200"
+        />
+        <div class="bio__text">
+          <h1 class="bio__name">Gunjan Paul</h1>
+          <p class="bio__meta">
+            Developer | Hardware & Software | Based in Bengaluru, India
+          </p>
+          <p class="bio__intro">
+            I’m Gunjan. I’ve built robots that reimagine warehouses, and AI
+            wearables that give people with disabilities a stronger voice, and
+            took these ideas to national and international stages. Now I’m
+            channeling that same drive for impactful robotics and experience in
+            shipping resilient software into building the next-gen OS for the
+            future of personal computing.
+          </p>
+          <nav class="bio__nav">
+            <a
+              href="https://twitter.com/yourhandle"
+              target="_blank"
+              rel="noopener"
+              class="btn btn--ghost twitter"
+            >
+              <i class="fab fa-x-twitter"></i> <span>Twitter</span>
+            </a>
+            <a
+              href="https://linkedin.com/in/yourprofile"
+              target="_blank"
+              rel="noopener"
+              class="btn btn--ghost linkedin"
+            >
+              <i class="fab fa-linkedin"></i> <span>LinkedIn</span>
+            </a>
+            <a
+              href="https://github.com/yourusername"
+              target="_blank"
+              rel="noopener"
+              class="btn btn--ghost github"
+            >
+              <i class="fab fa-github"></i> <span>GitHub</span>
+            </a>
+            <a href="mailto:you@example.com" class="btn btn--ghost email">
+              <i class="fas fa-envelope"></i> <span>Email</span>
+            </a>
+            <a
+              href="resume.pdf"
+              target="_blank"
+              rel="noopener"
+              class="btn btn--ghost resume"
+            >
+              <i class="fas fa-file-alt"></i> <span>Resume</span>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </header>
 
-  <body translate="no">
-    <div id="tiles"></div>
+    <main>
+      <!-- ===== Projects ===== -->
+      <section class="section" id="projects" aria-labelledby="projects-title">
+        <div class="container">
+          <div class="section__header">
+            <h2 id="projects-title" class="section__title">Projects</h2>
+            <p class="section__tagline">
+              A selection of work with images, dates, descriptions, and links.
+            </p>
+          </div>
 
-    <h1 id="title" class="centered" data-value="GUNJAN PAUL">GUNJAN PAUL</h1>
-    <div id="subtitle" class="centered">
-      <div
-        id="codepen"
-        class="circle"
-        onclick="openLink('https://codepen.io/gunjanpaul-dev')"
+          <article class="project-card reveal">
+            <div class="project-card__media">
+              <img
+                src="https://via.placeholder.com/1200x700.png?text=Project+Image+1"
+                alt="Screenshot or hero image for Project One"
+                loading="lazy"
+                width="1200"
+                height="700"
+              />
+            </div>
+            <div class="project-card__body">
+              <header class="project-card__header">
+                <h3 class="project-card__title">
+                  Project One — Minimal Navigation Device
+                </h3>
+                <time class="project-card__dates" datetime="2024-01"
+                  >Jan 2024 – Aug 2024</time
+                >
+              </header>
+              <p class="project-card__desc">
+                A low-power, offline map device with a microcontroller, compact
+                AMOLED, and on-device tile rendering. Built custom firmware, UI,
+                and a tiny route overlay pipeline. Emphasis on UX clarity and
+                power efficiency.
+              </p>
+              <div class="project-card__actions">
+                <a
+                  class="btn btn--ghost"
+                  href="#"
+                  target="_blank"
+                  rel="noopener"
+                  >GitHub</a
+                >
+                <a
+                  class="btn btn--ghost"
+                  href="#"
+                  target="_blank"
+                  rel="noopener"
+                  >Demo</a
+                >
+                <a
+                  class="btn btn--ghost"
+                  href="#"
+                  target="_blank"
+                  rel="noopener"
+                  >Write-up</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-card__media">
+              <img
+                src="https://via.placeholder.com/1200x700.png?text=Project+Image+2"
+                alt="Image for Project Two"
+                loading="lazy"
+                width="1200"
+                height="700"
+              />
+            </div>
+            <div class="project-card__body">
+              <header class="project-card__header">
+                <h3 class="project-card__title">
+                  Project Two — 6-DoF Manipulator
+                </h3>
+                <time class="project-card__dates" datetime="2023-05"
+                  >May 2023 – Dec 2023</time
+                >
+              </header>
+              <p class="project-card__desc">
+                End-to-end ROS2 stack with URDF, controllers, and MoveIt2
+                planning for a compact arm. Designed kinematics, drivers, and a
+                safety-first control pipeline with smooth motion profiles.
+              </p>
+              <div class="project-card__actions">
+                <a
+                  class="btn btn--ghost"
+                  href="#"
+                  target="_blank"
+                  rel="noopener"
+                  >GitHub</a
+                >
+                <a
+                  class="btn btn--ghost"
+                  href="#"
+                  target="_blank"
+                  rel="noopener"
+                  >Docs</a
+                >
+                <a
+                  class="btn btn--ghost"
+                  href="#"
+                  target="_blank"
+                  rel="noopener"
+                  >Video</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-card__media">
+              <img
+                src="https://via.placeholder.com/1200x700.png?text=Project+Image+3"
+                alt="Image for Project Three"
+                loading="lazy"
+                width="1200"
+                height="700"
+              />
+            </div>
+            <div class="project-card__body">
+              <header class="project-card__header">
+                <h3 class="project-card__title">
+                  Project Three — Smart Glasses Prototype
+                </h3>
+                <time class="project-card__dates" datetime="2022-09"
+                  >Sep 2022 – Ongoing</time
+                >
+              </header>
+              <p class="project-card__desc">
+                Early exploration of camera, audio, and power subsystems for
+                lightweight wearables. Built firmware scaffolds, HAL adapters,
+                and a minimal interaction model for glanceable tasks.
+              </p>
+              <div class="project-card__actions">
+                <a
+                  class="btn btn--ghost"
+                  href="#"
+                  target="_blank"
+                  rel="noopener"
+                  >GitHub</a
+                >
+                <a
+                  class="btn btn--ghost"
+                  href="#"
+                  target="_blank"
+                  rel="noopener"
+                  >Spec</a
+                >
+                <a
+                  class="btn btn--ghost"
+                  href="#"
+                  target="_blank"
+                  rel="noopener"
+                  >Notes</a
+                >
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===== Work Experience ===== -->
+      <section
+        class="section"
+        id="experience"
+        aria-labelledby="experience-title"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-          <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-          <path
-            d="M502.285 159.704l-234-156c-7.987-4.915-16.511-4.96-24.571 0l-234 156C3.714 163.703 0 170.847 0 177.989v155.999c0 7.143 3.714 14.286 9.715 18.286l234 156.022c7.987 4.915 16.511 4.96 24.571 0l234-156.022c6-3.999 9.715-11.143 9.715-18.286V177.989c-.001-7.142-3.715-14.286-9.716-18.285zM278 63.131l172.286 114.858-76.857 51.429L278 165.703V63.131zm-44 0v102.572l-95.429 63.715-76.857-51.429L234 63.131zM44 219.132l55.143 36.857L44 292.846v-73.714zm190 229.715L61.714 333.989l76.857-51.429L234 346.275v102.572zm22-140.858l-77.715-52 77.715-52 77.715 52-77.715 52zm22 140.858V346.275l95.429-63.715 76.857 51.429L278 448.847zm190-156.001l-55.143-36.857L468 219.132v73.714z"
-          />
-        </svg>
+        <div class="container">
+          <div class="section__header">
+            <h2 id="experience-title" class="section__title">
+              Work Experience
+            </h2>
+            <p class="section__tagline">
+              Places I’ve worked and what I did there.
+            </p>
+          </div>
+
+          <ul class="xp-list">
+            <li class="xp-item reveal">
+              <div class="xp-item__header">
+                <h3 class="xp-item__role">Backend Engineer</h3>
+                <time class="xp-item__dates" datetime="2024-02"
+                  >Feb 2024 – Present</time
+                >
+              </div>
+              <p class="xp-item__org">TransUnion · Bengaluru</p>
+              <p class="xp-item__desc">
+                Shipped resilient services at scale with a focus on reliability,
+                observability, and clean interfaces.
+              </p>
+            </li>
+
+            <li class="xp-item reveal">
+              <div class="xp-item__header">
+                <h3 class="xp-item__role">
+                  Embedded/Robotics Engineer — Intern
+                </h3>
+                <time class="xp-item__dates" datetime="2023-06"
+                  >Jun 2023 – Jan 2024</time
+                >
+              </div>
+              <p class="xp-item__org">Lab/Startup · Remote</p>
+              <p class="xp-item__desc">
+                Prototyped control stacks, drivers, and low-power UX for early
+                hardware concepts.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer__inner">
+        <p>&copy; <span id="year"></span> Your Name</p>
+        <ul class="footer__links" role="list">
+          <li><a href="mailto:you@example.com">you@example.com</a></li>
+          <li><a href="#" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
       </div>
-      <div
-        id="resume"
-        class="circle"
-        onclick="openLink('https://resume.gpaul.dev/cv.pdf')"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-          <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-          <path
-            d="M64 464c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H224v80c0 17.7 14.3 32 32 32h80V448c0 8.8-7.2 16-16 16H64zM64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V154.5c0-17-6.7-33.3-18.7-45.3L274.7 18.7C262.7 6.7 246.5 0 229.5 0H64zm56 256c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24H264c13.3 0 24-10.7 24-24s-10.7-24-24-24H120z"
-          />
-        </svg>
-      </div>
-      <div
-        id="github"
-        class="circle"
-        onclick="openLink('https://github.com/G-Paul')"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
-          <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-          <path
-            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
-          />
-        </svg>
-      </div>
-      <div
-        id="linkedin"
-        class="circle"
-        onclick="openLink('https://linkedin.com/in/gunjanpaul')"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-          <!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-          <path
-            d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"
-          />
-        </svg>
-      </div>
-    </div>
-    <div class="footer">
-      <!-- <span class="magic">
-        <span class="magic-star">
-          <svg viewBox="0 0 512 512">
-          <path d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z" />
-          </svg>
-        </span>
-        <span class="magic-star">
-          <svg viewBox="0 0 512 512">
-          <path d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z" />
-          </svg>
-        </span>
-        <span class="magic-star">
-          <svg viewBox="0 0 512 512">
-          <path d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z" />
-          </svg>
-        </span> -->
-      <span class="magic-text">Website Coming Now!</span>
-      <!-- </span> -->
-    </div>
-    <script id="rendered-js" src="app.js"></script>
+    </footer>
+
+    <script src="app.js" defer></script>
   </body>
 </html>

@@ -301,6 +301,18 @@ img {
   background: #222;
 }
 
+/* Work in Progress pill */
+.tag--wip {
+  background: #ffcc00; /* yellow base */
+  color: #000; /* dark text for contrast */
+  font-weight: 600;
+}
+
+/* Optional hover/focus if you want it interactive later */
+.tag--wip:hover {
+  background: #e6b800; /* slightly darker yellow-orange */
+}
+
 /* Stack on smaller screens */
 @media (max-width: 720px) {
   .project-card {

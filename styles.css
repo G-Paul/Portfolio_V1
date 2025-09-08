@@ -91,7 +91,7 @@ img {
 }
 .bio__name {
   margin: 0 0 6px;
-  font-size: clamp(28px, 4vw, 40px);
+  font-size: clamp(32px, 5vw, 50px);
   letter-spacing: -0.02em;
 }
 .bio__meta {
@@ -189,7 +189,7 @@ img {
 /* ----- Projects (side-by-side layout) ----- */
 .project-card {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 250px 1fr; /* fixed image column + flexible text */
   gap: 24px;
   background: var(--card);
   border: 1px solid var(--line);
@@ -197,15 +197,17 @@ img {
   padding: 20px;
   box-shadow: var(--shadow);
   margin-bottom: 24px;
-  align-items: center;
+  align-items: start;
 }
 
+/* Force project images to be square */
 .project-card__media img {
+  width: 250px; /* fixed width */
+  height: 250px; /* fixed height */
+  object-fit: cover; /* crop instead of distort */
   border-radius: 12px;
   border: 1px solid var(--line);
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+  display: block;
 }
 
 .project-card__body {
@@ -216,25 +218,52 @@ img {
 
 .project-card__header {
   display: flex;
-  gap: 12px;
+  justify-content: space-between; /* push title left, dates right */
   align-items: baseline;
-  flex-wrap: wrap;
   margin-bottom: 8px;
+  flex-wrap: wrap; /* ensures good wrapping on small screens */
 }
 
 .project-card__title {
   margin: 0;
   font-size: 22px;
   letter-spacing: -0.01em;
+  flex: 1; /* let title take available space */
 }
 
 .project-card__dates {
   color: var(--muted);
   font-size: 14px;
+  text-align: right;
+  white-space: nowrap; /* prevent line breaks inside the date */
 }
 
+/* Bullet point list for project descriptions */
 .project-card__desc {
-  margin: 10px 0 16px;
+  margin: 12px 0 16px;
+  padding-left: 0;
+}
+
+.project-card__desc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-card__desc li {
+  position: relative;
+  padding-left: 18px;
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+/* Minimal bullet — small dash instead of circle */
+.project-card__desc li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--muted);
+  font-weight: 600;
 }
 
 .project-card__actions {
@@ -243,45 +272,181 @@ img {
   gap: 10px;
 }
 
+/* Tag blocks (pills) */
+.project-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 8px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  background: #f0f0f0;
+  color: var(--ink);
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Black version for links */
+.tag--link {
+  background: #000;
+  color: #fff;
+}
+.tag--link:hover {
+  background: #222;
+}
+
 /* Stack on smaller screens */
 @media (max-width: 720px) {
   .project-card {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* stacked */
+  }
+  .project-card__media img {
+    width: 100%; /* fill card width */
+    height: auto; /* let aspect-ratio control height */
+    aspect-ratio: 1 / 1; /* keep it square */
+    object-fit: cover; /* crop nicely */
+  }
+  .project-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .project-card__dates {
+    order: 2; /* force below title */
+    text-align: left; /* align left instead of right */
+    margin: 0; /* remove extra space */
+  }
+
+  .project-card__title {
+    order: 1;
   }
 }
 
-/* ----- Experience ----- */
-.xp-list {
+/* --- Work Experience (clean list, expandable items) --- */
+.we-list {
   list-style: none;
+  margin: 0;
   padding: 0;
-  margin: 0;
+}
+
+.we-item {
+  border: none; /* no dividers */
+  padding: 0px 20px 0px 20px;
+}
+
+.we-row {
+  all: unset;
   display: grid;
-  gap: 14px;
+  grid-template-columns: 48px 1fr auto;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 0;
+  cursor: pointer;
+  align-items: center;
+  border-radius: 8px; /* so hover bg has soft corners */
+  transition: background-color 0.2s ease;
 }
-.xp-item {
-  background: var(--card);
+
+.we-row:hover {
+  background: rgba(0, 0, 0, 0.03); /* subtle highlight */
+}
+
+.we-row:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Logo */
+.we-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 16px;
-  box-shadow: var(--shadow);
 }
-.xp-item__header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-}
-.xp-item__role {
+
+/* Company name */
+.we-company {
   margin: 0;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  position: relative;
+  padding-right: 14px; /* space for hover arrow */
 }
-.xp-item__org {
-  margin: 4px 0 0;
-  color: var(--muted);
-}
-.xp-item__dates {
+
+/* Role */
+.we-role {
+  margin: 2px 0 0;
   color: var(--muted);
   font-size: 14px;
+}
+
+/* Dates */
+.we-dates {
+  color: var(--muted);
+  font-size: 14px;
+  white-space: nowrap;
+  margin-left: 8px;
+}
+
+/* Hover-only arrow after the title */
+.we-row:hover .we-company::after,
+.we-row:focus-visible .we-company::after {
+  content: "›";
+  position: relative;
+  left: 0;
+  top: 0;
+  line-height: 1;
+  opacity: 0.8;
+  margin-left: 10px;
+}
+
+/* Expandable details */
+.we-details {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+  padding-left: 58px; /* align under text */
+}
+
+.we-details p {
+  margin: 6px 0 12px;
+  line-height: 1.5;
+}
+
+/* When open */
+.we-row[aria-expanded="true"] + .we-details {
+  max-height: 240px;
+  opacity: 1;
+}
+
+/* Mobile tweaks */
+@media (max-width: 720px) {
+  .we-row {
+    grid-template-columns: 48px 1fr;
+    row-gap: 6px;
+    padding: 10px 0;
+  }
+
+  .we-dates {
+    grid-column: 2 / -1;
+    margin-left: 0;
+    white-space: normal;
+    text-align: left;
+  }
+
+  .we-details {
+    padding-left: 58px;
+  }
 }
 
 /* ----- Footer ----- */
@@ -338,5 +503,35 @@ img {
   }
   .footer__inner {
     flex-direction: column;
+  }
+}
+
+/* Small toast popup */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(8px);
+  padding: 10px 14px;
+  background: #111;
+  color: #fff;
+  border-radius: 999px;
+  font-size: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 1000;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    transition: none;
   }
 }

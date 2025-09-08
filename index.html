@@ -22,27 +22,27 @@
       <div class="container bio">
         <img
           class="bio__avatar"
-          src="assets/images/profile_pic.jpg"
+          src="assets/images/profile_img.jpg"
           alt="My Pic"
           width="200"
           height="200"
         />
         <div class="bio__text">
-          <h1 class="bio__name">Gunjan Paul</h1>
+          <h1 class="bio__name">Hi, I'm Gunjan👋</h1>
           <p class="bio__meta">
             Developer | Hardware & Software | Based in Bengaluru, India
           </p>
           <p class="bio__intro">
-            I’m Gunjan. I’ve built robots that reimagine warehouses, and AI
-            wearables that give people with disabilities a stronger voice, and
-            took these ideas to national and international stages. Now I’m
-            channeling that same drive for impactful robotics and experience in
-            shipping resilient software into building the next-gen OS for the
-            future of personal computing.
+            I’ve built robots that reimagine warehouses, and AI wearables that
+            give people with disabilities a stronger voice, and took these ideas
+            to national and international stages. Now I’m channeling that same
+            drive for impactful robotics and experience in shipping resilient
+            software into building the next-gen OS for the future of
+            personal computing.
           </p>
           <nav class="bio__nav">
             <a
-              href="https://twitter.com/yourhandle"
+              href="https://x.com/build_plate"
               target="_blank"
               rel="noopener"
               class="btn btn--ghost twitter"
@@ -50,7 +50,7 @@
               <i class="fab fa-x-twitter"></i> <span>Twitter</span>
             </a>
             <a
-              href="https://linkedin.com/in/yourprofile"
+              href="https://www.linkedin.com/in/gunjanpaul"
               target="_blank"
               rel="noopener"
               class="btn btn--ghost linkedin"
@@ -58,18 +58,23 @@
               <i class="fab fa-linkedin"></i> <span>LinkedIn</span>
             </a>
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/G-Paul"
               target="_blank"
               rel="noopener"
               class="btn btn--ghost github"
             >
               <i class="fab fa-github"></i> <span>GitHub</span>
             </a>
-            <a href="mailto:you@example.com" class="btn btn--ghost email">
+            <a
+              href="#"
+              id="emailBtn"
+              data-email="gunjanpaul.dev@gmail.com"
+              class="btn btn--ghost email"
+            >
               <i class="fas fa-envelope"></i> <span>Email</span>
             </a>
             <a
-              href="resume.pdf"
+              href="https://roboresume.gpaul.dev/cv.pdf"
               target="_blank"
               rel="noopener"
               class="btn btn--ghost resume"
@@ -88,14 +93,15 @@
           <div class="section__header">
             <h2 id="projects-title" class="section__title">Projects</h2>
             <p class="section__tagline">
-              A selection of work with images, dates, descriptions, and links.
+              I've worked on a variety of projects, from simple IoT devices to
+              complex fully-fledged Robots. Here are a few of my favorites.
             </p>
           </div>
 
           <article class="project-card reveal">
             <div class="project-card__media">
               <img
-                src="https://via.placeholder.com/1200x700.png?text=Project+Image+1"
+                src="assets/images/arctos_image.jpg"
                 alt="Screenshot or hero image for Project One"
                 loading="lazy"
                 width="1200"
@@ -105,40 +111,59 @@
             <div class="project-card__body">
               <header class="project-card__header">
                 <h3 class="project-card__title">
-                  Project One — Minimal Navigation Device
+                  6-DoF Robot Arm for Warehouse Package Processing
                 </h3>
                 <time class="project-card__dates" datetime="2024-01"
-                  >Jan 2024 – Aug 2024</time
+                  >Aug 2023 – Jan 2024</time
                 >
               </header>
-              <p class="project-card__desc">
-                A low-power, offline map device with a microcontroller, compact
-                AMOLED, and on-device tile rendering. Built custom firmware, UI,
-                and a tiny route overlay pipeline. Emphasis on UX clarity and
-                power efficiency.
-              </p>
-              <div class="project-card__actions">
+              <!-- New tag blocks -->
+              <div class="project-card__tags">
+                <!-- Black blocks = links -->
                 <a
-                  class="btn btn--ghost"
-                  href="#"
+                  href="https://youtube.com/playlist?list=PL9RIgjsgJZquakKV6ovYzIavj0fWWvemc&si=JKBAvQygXXbrhQ49"
                   target="_blank"
                   rel="noopener"
-                  >GitHub</a
+                  class="tag tag--link"
+                  >Video Demo</a
                 >
                 <a
-                  class="btn btn--ghost"
-                  href="#"
+                  href="https://www.linkedin.com/posts/gunjanpaul_flipkart-grid-50-robotics-finale-activity-7158046412255948800-O81a?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADa4LlsBjOIsJ2v9sKnTU-CoR30QjAH1XxI"
                   target="_blank"
                   rel="noopener"
-                  >Demo</a
+                  class="tag tag--link"
+                  >Feature Post</a
                 >
-                <a
-                  class="btn btn--ghost"
-                  href="#"
-                  target="_blank"
-                  rel="noopener"
-                  >Write-up</a
-                >
+
+                <!-- Gray blocks = plain text tech stack -->
+                <span class="tag">ROS2</span>
+                <span class="tag">YOLOv8</span>
+                <span class="tag">FreeRTOS</span>
+                <span class="tag">Linux</span>
+              </div>
+
+              <!-- Keep description in bullet form as before -->
+              <div class="project-card__desc">
+                <ul>
+                  <li>
+                    Constructed a <b>3D Printed 6-DOF Arm</b> with Suction
+                    Grippers that detects and picks up individual parcels from a
+                    pile, reorients it so that the shipping label faces upwards,
+                    and places it on a designated spot.
+                  </li>
+                  <li>
+                    Built for <b>Flipkart Grid 5.0 [Robotics Track]</b>.
+                    Qualified for National Finals. Presented in IIT Madras.
+                  </li>
+                  <li>
+                    Modded OS used for CNC machines to run the 6 joints of the
+                    arm smoothly.
+                  </li>
+                  <li>
+                    Implemented robust CV pipeline using YOLOv8 for package and
+                    orientation detection.
+                  </li>
+                </ul>
               </div>
             </div>
           </article>
@@ -146,8 +171,8 @@
           <article class="project-card reveal">
             <div class="project-card__media">
               <img
-                src="https://via.placeholder.com/1200x700.png?text=Project+Image+2"
-                alt="Image for Project Two"
+                src="assets/images/gloves_pic.jpg"
+                alt="Screenshot or hero image for Project One"
                 loading="lazy"
                 width="1200"
                 height="700"
@@ -156,39 +181,60 @@
             <div class="project-card__body">
               <header class="project-card__header">
                 <h3 class="project-card__title">
-                  Project Two — 6-DoF Manipulator
+                  Nai-Awaz: Sign Language to Speech Gloves
                 </h3>
-                <time class="project-card__dates" datetime="2023-05"
-                  >May 2023 – Dec 2023</time
+                <time class="project-card__dates" datetime="2024-01"
+                  >Jan 2023 – Sept 2023</time
                 >
               </header>
-              <p class="project-card__desc">
-                End-to-end ROS2 stack with URDF, controllers, and MoveIt2
-                planning for a compact arm. Designed kinematics, drivers, and a
-                safety-first control pipeline with smooth motion profiles.
-              </p>
-              <div class="project-card__actions">
+              <!-- New tag blocks -->
+              <div class="project-card__tags">
+                <!-- Black blocks = links -->
                 <a
-                  class="btn btn--ghost"
-                  href="#"
+                  href="https://www.canva.com/design/DAFqHFHswuk/gH7jhVfqH0nBQmKB3sfABA/view?utm_content=DAFqHFHswuk&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h88a86ae385"
                   target="_blank"
                   rel="noopener"
-                  >GitHub</a
+                  class="tag tag--link"
+                  >Pitch Deck</a
                 >
-                <a
-                  class="btn btn--ghost"
-                  href="#"
+                <!-- <a
+                  href="https://yourprojectdemo.com"
                   target="_blank"
                   rel="noopener"
-                  >Docs</a
-                >
-                <a
-                  class="btn btn--ghost"
-                  href="#"
-                  target="_blank"
-                  rel="noopener"
-                  >Video</a
-                >
+                  class="tag tag--link"
+                  >Website</a
+                > -->
+
+                <!-- Gray blocks = plain text tech stack -->
+                <span class="tag">C++</span>
+                <span class="tag">Embedded Linux</span>
+                <span class="tag">PyTorch</span>
+                <span class="tag">TFLite</span>
+              </div>
+
+              <!-- Keep description in bullet form as before -->
+              <div class="project-card__desc">
+                <ul>
+                  <li>
+                    Built Nai-Awaz [The New Voice]: Gloves that can translate
+                    sign-language to speech/text in real time.
+                  </li>
+                  <li>
+                    Novel Approach: Using
+                    <b>Hall-Effect sensors + IMU</b> instead of flex sensors, to
+                    improve accuracy and longevity.
+                  </li>
+                  <li>
+                    Presented in
+                    <b
+                      >Regional Finals [APAC] of Oppo Inspiration Challenge
+                      2023, Bangkok</b
+                    >
+                    [Top-15 from 687 proposals from 68 countries].
+                    <b>Winner</b> in Innovation Challenge, Kshitij 2023,
+                    IIT-KGP.
+                  </li>
+                </ul>
               </div>
             </div>
           </article>
@@ -196,8 +242,8 @@
           <article class="project-card reveal">
             <div class="project-card__media">
               <img
-                src="https://via.placeholder.com/1200x700.png?text=Project+Image+3"
-                alt="Image for Project Three"
+                src="assets/images/TSC App.png"
+                alt="Screenshot or hero image for Project One"
                 loading="lazy"
                 width="1200"
                 height="700"
@@ -205,40 +251,54 @@
             </div>
             <div class="project-card__body">
               <header class="project-card__header">
-                <h3 class="project-card__title">
-                  Project Three — Smart Glasses Prototype
-                </h3>
-                <time class="project-card__dates" datetime="2022-09"
-                  >Sep 2022 – Ongoing</time
+                <h3 class="project-card__title">Talent Sprint Classes App</h3>
+                <time class="project-card__dates" datetime="2024-01"
+                  >Mar 2023 – July 2023</time
                 >
               </header>
-              <p class="project-card__desc">
-                Early exploration of camera, audio, and power subsystems for
-                lightweight wearables. Built firmware scaffolds, HAL adapters,
-                and a minimal interaction model for glanceable tasks.
-              </p>
-              <div class="project-card__actions">
-                <a
-                  class="btn btn--ghost"
-                  href="#"
+              <!-- New tag blocks -->
+              <div class="project-card__tags">
+                <!-- Black blocks = links -->
+                <!-- <a
+                  href="https://github.com/yourproject"
                   target="_blank"
                   rel="noopener"
+                  class="tag tag--link"
                   >GitHub</a
-                >
+                > -->
                 <a
-                  class="btn btn--ghost"
-                  href="#"
+                  href="https://youtube.com/shorts/jdrRjJHKxLk?si=xa_G7MKcOoXxK13-"
                   target="_blank"
                   rel="noopener"
-                  >Spec</a
+                  class="tag tag--link"
+                  >Demo Video</a
                 >
-                <a
-                  class="btn btn--ghost"
-                  href="#"
-                  target="_blank"
-                  rel="noopener"
-                  >Notes</a
-                >
+
+                <!-- Gray blocks = plain text tech stack -->
+                <span class="tag">Flutter</span>
+                <span class="tag">FireBase</span>
+                <span class="tag">Android</span>
+              </div>
+
+              <!-- Keep description in bullet form as before -->
+              <div class="project-card__desc">
+                <ul>
+                  <li>
+                    App made for Talent Sprint Classes, Odisha as a companion
+                    app for their teachers and students.
+                  </li>
+                  <li>
+                    Students can view class schedule, academic details,
+                    performance details; download class materials and pay fees.
+                    Teachers can view student performance, upload class notes
+                    and marks, and see their schedule.
+                  </li>
+                  <li>
+                    Flutter app, directly integrated with Firebase back-end to
+                    enable User Authentication and CRUD Operations.
+                  </li>
+                  <li>Reached a user-base of 500+ students and teachers.</li>
+                </ul>
               </div>
             </div>
           </article>
@@ -261,35 +321,83 @@
             </p>
           </div>
 
-          <ul class="xp-list">
-            <li class="xp-item reveal">
-              <div class="xp-item__header">
-                <h3 class="xp-item__role">Backend Engineer</h3>
-                <time class="xp-item__dates" datetime="2024-02"
-                  >Feb 2024 – Present</time
-                >
+          <ul class="we-list">
+            <li class="we-item">
+              <button class="we-row" aria-expanded="false">
+                <img
+                  class="we-logo"
+                  src="assets/images/glasses_logo.jpg"
+                  alt="Retail Pivot logo"
+                  width="56"
+                  height="56"
+                />
+                <div class="we-main">
+                  <h3 class="we-company">Project AURA</h3>
+                  <p class="we-role">Lead Engineer - Operating System</p>
+                </div>
+                <time class="we-dates">Sept 2025 – present</time>
+              </button>
+              <div class="we-details">
+                <p>
+                  Building the next-gen Operting System for the next-generation
+                  of AI powered personal computing.
+                </p>
               </div>
-              <p class="xp-item__org">TransUnion · Bengaluru</p>
-              <p class="xp-item__desc">
-                Shipped resilient services at scale with a focus on reliability,
-                observability, and clean interfaces.
-              </p>
+            </li>
+            <!-- Item -->
+            <li class="we-item">
+              <button class="we-row" aria-expanded="false">
+                <img
+                  class="we-logo"
+                  src="assets/images/transunion_logo.jpg"
+                  alt="Retail Pivot logo"
+                  width="56"
+                  height="56"
+                />
+                <div class="we-main">
+                  <h3 class="we-company">TransUnion GTC India</h3>
+                  <p class="we-role">Software Developer - Backend</p>
+                </div>
+                <time class="we-dates">Feb 2024 – Sept 2025</time>
+              </button>
+              <div class="we-details">
+                <p>
+                  Part of the initial team building TruAudience™ - TransUnion's
+                  latest gen data-driven marketing and measurement solution.
+                  Helped build the product's core backend services - from
+                  initial ideations to onboarding our first set of enterprise
+                  customers.
+                </p>
+              </div>
             </li>
 
-            <li class="xp-item reveal">
-              <div class="xp-item__header">
-                <h3 class="xp-item__role">
-                  Embedded/Robotics Engineer — Intern
-                </h3>
-                <time class="xp-item__dates" datetime="2023-06"
-                  >Jun 2023 – Jan 2024</time
-                >
+            <!-- Item -->
+            <li class="we-item">
+              <button class="we-row" aria-expanded="false">
+                <img
+                  class="we-logo"
+                  src="assets/images/glovifi_logo.png"
+                  alt="Retail Pivot logo"
+                  width="56"
+                  height="56"
+                />
+                <div class="we-main">
+                  <h3 class="we-company">Glovi-Fi</h3>
+                  <p class="we-role">Co-Founder</p>
+                </div>
+                <time class="we-dates">Feb 2023 – Jan 2024</time>
+              </button>
+              <div class="we-details">
+                <p>
+                  Co-Founded Glovi-Fi while I was in college. Here, we built
+                  Nai-Awaz: Sign Language to Speech Gloves. We built it using a
+                  noble hardware and software stack. Presented our product and
+                  company in Oppo Inspiration Challenge 2023 Finals in Bangkok
+                  in front of a panel of judges from tech-research and
+                  investment-banking background. Received praise for our
+                  approach to solving a problem that affects millions worldwide.
+                </p>
               </div>
-              <p class="xp-item__org">Lab/Startup · Remote</p>
-              <p class="xp-item__desc">
-                Prototyped control stacks, drivers, and low-power UX for early
-                hardware concepts.
-              </p>
             </li>
           </ul>
         </div>
@@ -298,14 +406,13 @@
 
     <footer class="site-footer">
       <div class="container footer__inner">
-        <p>&copy; <span id="year"></span> Your Name</p>
-        <ul class="footer__links" role="list">
-          <li><a href="mailto:you@example.com">you@example.com</a></li>
-          <li><a href="#" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
-        </ul>
+        <p>&copy; <span id="year"></span> Gunjan Paul</p>
       </div>
     </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+      Email copied to clipboard
+    </div>
 
     <script src="app.js" defer></script>
   </body>

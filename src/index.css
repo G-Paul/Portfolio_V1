@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   THEME SYSTEM
+   Single source of truth for all colors
+   ============================================ */
+
+:root {
+  /* Light Theme - Warm cream tones */
+  --bg: #FAF9F7;
+  --bg-alt: #F5F4F0;
+  --bg-card: #FFFFFF;
+  --border: #E5E2DC;
+  --text: #1C1917;
+  --text-muted: #57534E;
+  --accent: #D97706;
+  --accent-hover: #B45309;
+  --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.dark {
+  /* Dark Theme - Warm dark tones */
+  --bg: #0C0A09;
+  --bg-alt: #1C1917;
+  --bg-card: #1C1917;
+  --border: #292524;
+  --text: #FAFAF9;
+  --text-muted: #A8A29E;
+  --accent: #e85d04;
+  --accent-hover: #f48c06;
+  --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.2);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.3);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+@layer base {
+  * {
+    @apply transition-colors duration-200;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  ::selection {
+    background-color: rgba(217, 119, 6, 0.25);
+  }
+
+  .dark ::selection {
+    background-color: rgba(232, 93, 4, 0.35);
+  }
+}
+
+/* ============================================
+   THEME UTILITIES
+   Use these classes in components
+   ============================================ */
+
+@layer utilities {
+  /* Backgrounds */
+  .th-bg { background-color: var(--bg); }
+  .th-bg-alt { background-color: var(--bg-alt); }
+  .th-bg-card { background-color: var(--bg-card); }
+  .th-bg-accent { background-color: var(--accent); }
+
+  /* Text */
+  .th-text { color: var(--text); }
+  .th-text-muted { color: var(--text-muted); }
+  .th-text-accent { color: var(--accent); }
+
+  /* Borders */
+  .th-border { border-color: var(--border); }
+
+  /* Shadows */
+  .th-shadow { box-shadow: var(--shadow); }
+  .th-shadow-lg { box-shadow: var(--shadow-lg); }
+
+  /* Hover states */
+  .th-hover-bg:hover { background-color: var(--bg-alt); }
+  .th-hover-border:hover { border-color: var(--text-muted); }
+  .th-hover-text:hover { color: var(--text); }
+  .th-hover-accent:hover { background-color: var(--accent-hover); }
+
+  /* Text balance */
+  .text-balance { text-wrap: balance; }
+}
+
+/* ============================================
+   COMPONENT STYLES
+   ============================================ */
+
+@layer components {
+  /* Hero gradient */
+  .hero-gradient {
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(217, 119, 6, 0.08), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(217, 119, 6, 0.05), transparent),
+      var(--bg);
+  }
+
+  .dark .hero-gradient {
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(232, 93, 4, 0.12), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(232, 93, 4, 0.08), transparent),
+      var(--bg);
+  }
+
+  /* Decorative divider */
+  .th-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+  }
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-alt);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}

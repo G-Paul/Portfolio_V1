@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { projects } from '../data/content'
 import ForceField from './ForceField'
+import ImageCarousel from './ImageCarousel'
 
 function ProjectCard({ project, index }) {
   const ref = useRef(null)
@@ -20,21 +21,18 @@ function ProjectCard({ project, index }) {
       <div className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
         {/* Image Section */}
         <div className="relative lg:w-[45%] flex-shrink-0 overflow-hidden th-bg-alt">
-          <div className="aspect-[4/3] lg:aspect-auto lg:absolute lg:inset-0">
-            <img
-              src={project.image}
-              alt={project.title}
-              loading="lazy"
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
+          <div className={`${project.images.length > 1 ? 'aspect-auto' : 'aspect-[4/3]'} lg:aspect-auto lg:absolute lg:inset-0`}>
+            <ImageCarousel images={project.images} alt={project.title} />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          {project.images.length === 1 && (
+            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+          )}
 
           {project.isWip && (
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="absolute top-4 left-4"
+              className="absolute top-4 left-4 z-10"
             >
               <span className="px-3 py-1.5 bg-amber-500 text-white text-xs font-semibold rounded-full shadow-lg">
                 Work in Progress

@@ -30,7 +30,7 @@ export const projects = [
     id: 1,
     title: "6-DoF Robot Arm for Warehouse Package Processing",
     dates: "Aug 2023 – Jan 2024",
-    image: "/assets/images/arctos_gif.gif",
+    images: ["/assets/images/arctos_gif.gif", "/assets/images/arctos_image.jpg"],
     links: [
       {
         label: "Video Demo",
@@ -47,14 +47,32 @@ export const projects = [
       "Constructed a <strong>3D Printed 6-DOF Arm</strong> with Suction Grippers that detects and picks up individual parcels from a pile, reorients it so that the shipping label faces upwards, and places it on a designated spot.",
       "Built for <strong>Flipkart Grid 5.0 [Robotics Track]</strong>. Qualified for National Finals. Presented in IIT Madras.",
       "Modded OS used for CNC machines to run the 6 joints of the arm smoothly.",
-      "Implemented robust CV pipeline using YOLOv8 for package and orientation detection.",
+      "Custom built Pneumatic Suction Gripper system with sensor based feedback mechanism for grip detection.",
     ],
   },
   {
     id: 2,
+    title: "FOC BLDC Actuator with Stackable Gearbox",
+    dates: "Jul 2025 – Sept 2025",
+    images: ["/assets/images/foc_gb_gif1.gif","/assets/images/foc_gb_gif2.gif","/assets/images/FOC_GB_exp_2.png", "/assets/images/FOC_GB_exp_1.png", "/assets/images/FOC_PCB_1.jpg", "/assets/images/FOC_PCB_2.jpg"],
+    links: [
+       
+    ],
+    tech: ["Field Oriented Control", "SimpleFOC", "Magnetic Encoders", "CAD Design", "PCB Design"],
+    isWip: true,
+    description: [
+      "Project to explore the world of Robotics Actuator by learning BLDC Field Oriented Control (FOC) and Gearbox design principles.",
+      "Designed a modular, stackable planetary gearbox system with each GB module being a 4:1 reduction gearbox. Motor module contains a 2805 Gimbal Motor.",
+      "Designed a SPI based Magnetic Encoder board using the MA702 IC for high-speed position feedback for closed loop FOC.",
+      "Used SimpleFOC to perform position and velocity based FOC control of the gearbox.",
+      "In Progress: Custom implementation of position, velocity and torque control using STM32 based ESC dev board"
+    ],
+  },
+  {
+    id: 3,
     title: "Nai-Awaz: Sign Language to Speech Gloves",
     dates: "Jan 2023 – Sept 2023",
-    image: "/assets/images/gloves_pic.jpg",
+    images: ["/assets/images/gloves_pic.jpg"],
     links: [
       {
         label: "Pitch Deck",
@@ -70,10 +88,10 @@ export const projects = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     title: "MotoNav: Offline GPS navigation device for Motorbikes",
     dates: "Aug 2025 – Oct 2025",
-    image: "/assets/images/map_puc.jpg",
+    images: ["/assets/images/map_puc.jpg"],
     links: [
       {
         label: "GitHub",
@@ -84,15 +102,15 @@ export const projects = [
     isWip: false,
     description: [
       "MotoNav is a small [2 inch] device that uses built in GPS and Compass for offline phone-free navigation.",
-      "Mounts on a motorcycle's handlebar. The user can set the route through mobile app, and then the route is displayed on the screen. Smartphone only required for initiating navigation - rest is on device.",
-      "Built using a ESP32S3 AMOLED module. Uses Arduino + LVGL for rendering map. Uses GPS + Compass + IMU for navigation. Uses map tiles from OpenStreetMap.",
+      "Intended to mount on a motorcycle's handlebar. The user can set the route through mobile app, and then the route is displayed on the screen. Smartphone only required for initiating navigation - rest is on device.",
+      "Built using a ESP32S3 AMOLED module. Uses Arduino + LVGL for rendering map. Uses GPS + Compass + IMU for navigation. Uses map tiles from OpenStreetMap, rendered in game-like minimap designa through a custom pipeline.",
     ],
   },
   // {
   //   id: 4,
   //   title: "Talent Sprint Classes App",
   //   dates: "Mar 2023 – July 2023",
-  //   image: "/assets/images/TSC App.png",
+  //   images: ["/assets/images/TSC App.png"],
   //   links: [
   //     {
   //       label: "Demo Video",

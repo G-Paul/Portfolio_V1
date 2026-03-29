@@ -63,7 +63,7 @@ export default function ImageCarousel({ images, alt }) {
   return (
     <div className="flex flex-col h-full">
       {/* Main image area */}
-      <div className="relative flex-1 min-h-0 overflow-hidden">
+      <div className="relative aspect-[4/3] lg:aspect-auto lg:flex-1 lg:min-h-0 overflow-hidden">
         <AnimatePresence initial={false} custom={direction} mode="popLayout">
           <motion.img
             key={currentIndex}
@@ -83,21 +83,21 @@ export default function ImageCarousel({ images, alt }) {
         {/* Nav arrows */}
         <button
           onClick={(e) => { e.stopPropagation(); paginate(-1) }}
-          className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center bg-black/40 hover:bg-black/60 text-white backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 z-10"
+          className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center bg-black/40 hover:bg-black/60 text-white backdrop-blur-sm transition-all opacity-70 lg:opacity-0 group-hover:opacity-100 z-10"
           aria-label="Previous image"
         >
           <ChevronLeft size={18} />
         </button>
         <button
           onClick={(e) => { e.stopPropagation(); paginate(1) }}
-          className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center bg-black/40 hover:bg-black/60 text-white backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 z-10"
+          className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center bg-black/40 hover:bg-black/60 text-white backdrop-blur-sm transition-all opacity-70 lg:opacity-0 group-hover:opacity-100 z-10"
           aria-label="Next image"
         >
           <ChevronRight size={18} />
         </button>
 
         {/* Image counter badge */}
-        <div className="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-black/40 text-white text-xs backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10">
+        <div className="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-black/40 text-white text-xs backdrop-blur-sm opacity-70 lg:opacity-0 group-hover:opacity-100 transition-opacity z-10">
           {currentIndex + 1} / {images.length}
         </div>
       </div>

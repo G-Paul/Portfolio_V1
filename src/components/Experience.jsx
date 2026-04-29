@@ -26,13 +26,23 @@ function TimelineItem({ job, index, isLast }) {
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.2 }}
         >
-          <div className="w-full h-full rounded-full overflow-hidden">
-            <img
-              src={job.logo}
-              alt={`${job.company} logo`}
-              className="w-full h-full object-cover"
-            />
-          </div>
+          {job.url ? (
+            <a href={job.url} target="_blank" rel="noopener noreferrer" className="block w-full h-full rounded-full overflow-hidden" title={`Visit ${job.company}`}>
+              <img
+                src={job.logo}
+                alt={`${job.company} logo`}
+                className="w-full h-full object-cover"
+              />
+            </a>
+          ) : (
+            <div className="w-full h-full rounded-full overflow-hidden">
+              <img
+                src={job.logo}
+                alt={`${job.company} logo`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
           {job.isCurrent && (
             <motion.div
               animate={{ scale: [1, 1.3, 1] }}

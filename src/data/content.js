@@ -1,10 +1,12 @@
 export const profile = {
   name: "Gunjan Paul",
   greeting: "Hi, I'm Gunjan",
-  title: "Founding Engineer | FPV Labs",
+  title: "Robotics Engineer | Eyecandy Robotics",
+  companyUrl: "https://eyecandyrobotics.com",
+  companyLogo: "/assets/images/eyecandy.png",
   location: "Bengaluru, India",
   avatar: "/assets/images/profile_img.jpg",
-  bio: `I've built robots that reimagine warehouses, and AI wearables that give people with disabilities a stronger voice, and took these ideas to national and international stages. Now I'm channeling that same drive for impactful robotics into building the next-gen infra for spacial computing and physical intelligence.`,
+  bio: `I've built robots that reimagine warehouses, and AI wearables that give people with disabilities a stronger voice, and took these ideas to national and international stages. I\'ve helped FPV Labs get started with Egocentric Data for Spatial Intelligence, and now I\'m in Eyecandy Robotics where we imagine and create robots that are fun and entertaining.`,
   email: "gunjanpaul.dev@gmail.com",
   social: [
     {
@@ -131,26 +133,39 @@ export const projects = [
 export const experience = [
   {
     id: 1,
-    company: "FPV Labs",
-    role: "Founding Engineer",
-    dates: "Sept 2025 – present",
-    logo: "/assets/images/fpv.png",
+    company: "Eyencandy Robotics",
+    role: "Robotics Enginner",
+    dates: "April 2026 – present",
+    logo: "/assets/images/eyecandy_orange.png",
+    url: "https://eyecandyrobotics.com",
     description:
-      "At FPV Labs, we’re building next-generation infrastructure for physical embodied intelligence and spatial computing. As a Founding Engineer, I design and develop novel hardware and software systems for distributed, long-horizon, multimodal data capture. I also help validate ideas and hypotheses, benchmark and test hardware, and collaborate with the team to build robust end-to-end systems. It\’s complex work - and that\'s exactly what makes it fun.",
+      "At Eyecandy Robotics, I'm part of an incredible team who believe that robots can be cool and entertaining. Here, I build the hardware and software of robots that blend engineering with personality — machines that don't just work, but genuinely delight.",
     isCurrent: true,
   },
   {
     id: 2,
+    company: "FPV Labs",
+    role: "Founding Engineer",
+    dates: "Sept 2025 – Mar 2026",
+    logo: "/assets/images/fpv.png",
+    url: "https://fpvlabs.ai",
+    // description:
+    //   "As part of the founding team at FPV Labs, my work mostly focussed on working on hardware - researching, developing and validating hardware solutions for detailed multi-modal Egocentric Data recording, VIO, SLAM and related stuff. I also contributed to developing several internal software tools, maintaining the data backend , and in general, embracing the beautiful chaos of building something from scratch.",
+    isCurrent: false,
+  },
+  {
+    id: 3,
     company: "TransUnion GTC India",
     role: "SDE - Backend",
     dates: "Feb 2024 – Sept 2025",
     logo: "/assets/images/transunion_logo.jpg",
+    url: "https://www.transunion.com",
     description:
       "Part of the initial team building TruAudience™ - TransUnion's latest gen data-driven marketing and measurement solution. Helped build the product's core backend services - from initial ideations to onboarding our first set of enterprise customers.",
     isCurrent: false,
   },
   {
-    id: 3,
+    id: 4,
     company: "Glovi-Fi",
     role: "Co-Founder",
     dates: "Feb 2023 – Jan 2024",

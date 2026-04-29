@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Twitter, Linkedin, Github, Mail, MapPin, Copy } from 'lucide-react'
+import { Twitter, Linkedin, Github, Mail, MapPin, Copy, Wrench } from 'lucide-react'
 import { profile } from '../data/content'
 import ForceField from './ForceField'
 
@@ -78,7 +78,37 @@ export default function Hero({ showToast }) {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="flex flex-wrap items-center justify-center lg:justify-start gap-2 th-text-muted mb-6"
             >
-              <span className="font-medium">{profile.title}</span>
+              {profile.companyUrl ? (() => {
+                const [role, company] = profile.title.split(' | ')
+                return (
+                  <>
+                    <span className="flex items-center gap-1 font-medium">
+                      <Wrench size={14} />
+                      {role}
+                    </span>
+                    <span style={{ color: 'var(--border)' }}>|</span>
+                    <a
+                      href={profile.companyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 font-medium hover:underline"
+                      style={{ color: 'var(--accent)' }}
+                    >
+                      {profile.companyLogo && (
+                        <img
+                          src={profile.companyLogo}
+                          alt={company}
+                          className="w-4 h-4 object-contain"
+                          style={{ filter: 'brightness(0) saturate(100%) invert(53%) sepia(91%) saturate(800%) hue-rotate(350deg) brightness(105%)' }}
+                        />
+                      )}
+                      {company}
+                    </a>
+                  </>
+                )
+              })() : (
+                <span className="font-medium">{profile.title}</span>
+              )}
               <span style={{ color: 'var(--border)' }}>|</span>
               <span className="flex items-center gap-1">
                 <MapPin size={14} />

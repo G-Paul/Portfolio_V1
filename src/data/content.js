@@ -134,7 +134,7 @@ export const experience = [
   {
     id: 1,
     company: "Eyencandy Robotics",
-    role: "Robotics Enginner",
+    role: "Founding Engineer - Roboticss",
     dates: "April 2026 – present",
     logo: "/assets/images/eyecandy_orange.png",
     url: "https://eyecandyrobotics.com",
@@ -145,12 +145,12 @@ export const experience = [
   {
     id: 2,
     company: "FPV Labs",
-    role: "Founding Engineer",
+    role: "Founding Engineer - Hardware",
     dates: "Sept 2025 – Mar 2026",
     logo: "/assets/images/fpv.png",
     url: "https://fpvlabs.ai",
-    // description:
-    //   "As part of the founding team at FPV Labs, my work mostly focussed on working on hardware - researching, developing and validating hardware solutions for detailed multi-modal Egocentric Data recording, VIO, SLAM and related stuff. I also contributed to developing several internal software tools, maintaining the data backend , and in general, embracing the beautiful chaos of building something from scratch.",
+    description:
+      "As part of the founding team at FPV Labs, my work mostly focussed on working on hardware - researching, developing and validating hardware solutions for detailed multi-modal Egocentric Data recording, VIO, SLAM and related stuff. I also contributed to developing several internal software tools, maintaining the data backend , and in general, embracing the beautiful chaos of building something from scratch.",
     isCurrent: false,
   },
   {

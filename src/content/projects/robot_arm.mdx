@@ -1,0 +1,54 @@
+---
+title: 6-DOF Robotic Arm
+summary: A 3D printed 6-axis arm that picks parcels off a pile, works out where the shipping label is, and puts them down label-up. Built for Flipkart Grid.
+featured: true
+order: 30
+date: 2023-08-01
+tags: [ROS 2, YOLOv8, GRBL, Pneumatics, 3D Printing]
+---
+
+## The task
+
+Flipkart Grid 5.0 set a warehouse problem: parcels arrive in a heap, and before anything downstream can read them, each one has to be picked out individually and placed with its shipping label facing up. Doing that needs three things to work together. You have to find a parcel in a pile, get a grip on it that you can trust, and then know which of its faces the label is on.
+
+We built the whole thing over about six months, arm included.
+
+![The arm, with the three-cup suction gripper and the GT2 belt runs visible along each link.](/projects/robot_arm/arm.jpg)
+
+## The arm
+
+The mechanical design started from the open-source [Arctos](https://arctosrobotics.com/) arm and was modified fairly heavily, partly to suit the task and partly because our budget and what we could actually buy locally did not match the original bill of materials. Almost every structural part is 3D printed.
+
+Two of the axes use **cycloidal gearboxes**, which buy a large reduction in one compact stage and take shock loads well. The rest use belt reduction. Every axis, cycloidal or not, is ultimately driven through a **GT2 timing belt**, which keeps the motors off the joints and closer to the base where their weight costs less.
+
+Motion is by **NEMA 23 and NEMA 17 steppers, run entirely open-loop**. No encoders, no feedback. That is a real constraint and it shaped everything after it: the arm believes it is where it commanded itself to be, so anything that needed to be accurate had to be handled by the cameras rather than by the joints.
+
+## Firmware
+
+The controller is a **custom GRBL implementation we wrote for six axes**. GRBL is CNC firmware, built for coordinated multi-axis motion with proper acceleration planning, which is exactly the problem a stepper-driven arm has and is not something you get for free. Extending it to six joints gave us smooth, planned trajectories instead of joints arriving at their targets at different times.
+
+<Video src="/projects/robot_arm/arm-demo.mp4" caption="Picking a parcel off the stack." />
+
+## The gripper
+
+The end effector is a **pneumatic suction gripper** we designed, with three spring-loaded cups so it can meet a surface that is not quite flat or not quite square.
+
+The part I liked most is that each cup has its own **air pressure sensor**, closing a feedback loop around the grip. A cup that has sealed against cardboard reads very differently from one that is open to atmosphere, so the arm can tell the difference between a successful pick and a miss before it tries to lift, and can confirm a clean release afterwards rather than assuming. On an arm with no joint feedback at all, this was the one place we did have ground truth.
+
+## Seeing the parcels
+
+Two cameras, doing two different jobs.
+
+A camera on the gripper looks down at the pile. **YOLOv8** detects the parcels and we derive the centre and orientation of the target from the detection, then drive the gripper to that setpoint. The same model classifies which of the three parcel sizes it is looking at, which decides the approach.
+
+A second camera sits in front of the gripper and answers the other question: which face is the label on. Once a parcel is held, the arm presents each candidate face to that camera in turn, and each frame is contrast-normalised and searched for the high-frequency stripe pattern a barcode makes, with promising regions handed to a decoder to confirm. As soon as a face decodes, we know the label's orientation.
+
+From there the reorientation is not clever: for each possible label position there is a **hardcoded sequence of moves** that ends with the label facing up. Given open-loop joints and a competition deadline, a lookup table of known-good motions was worth more than anything general.
+
+## How it went
+
+We qualified for the national finals and presented at IIT Madras. We did not manage a working demonstration on the day: the software, and the laptop we were running it on, let us down at exactly the wrong moment.
+
+
+[Video demo](https://youtube.com/playlist?list=PL9RIgjsgJZquakKV6ovYzIavj0fWWvemc&si=JKBAvQygXXbrhQ49) ·
+[Feature post](https://www.linkedin.com/posts/gunjanpaul_flipkart-grid-50-robotics-finale-activity-7158046412255948800-O81a)

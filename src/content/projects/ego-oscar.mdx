@@ -1,0 +1,128 @@
+---
+title: Ego-OSCAR
+summary: An open-source, $200 device that can capture stereo-inertial data. Made for FPV Labs.
+featured: true
+order: 10
+date: 2026-08-01
+tags: [Open Hardware, Stereo Vision, Egocentric Data, Embedded Linux, Paper]
+---
+
+FPV Labs wanted egocentric video at a scale that research-grade hardware makes impossible. Although devices like Project Aria existed for detailed egocentric data capture, getting dozens of units and distributing them to contributors was not possible. Whatever we used had to be cheap enough to lose, and repairable and reproducible by anyone with a 3D printer.
+
+My work was the device itself: selecting the parts, designing the enclosure, and writing everything that runs on it.
+
+<Gallery>
+  ![Two units. One closed up, one open with the perfboard and wiring still exposed.](/projects/ego-oscar/assembled.webp)
+  ![Part of the fleet on my desk. Thirteen of these got built by hand.](/projects/ego-oscar/fleet.jpg)
+</Gallery>
+
+## Why build hardware at all
+
+For embodied AI the bottleneck has shifted. It used to be model architecture. Now it is data, specifically diverse multimodal data at a scale which nobody has.
+
+Every existing route to that data gives something up. Teleoperation produces beautifully precise trajectories but it does not scale, because a human has to sit there for every hour of it, and you can't usually send a teleop setup with to someone's home. Simulation scales infinitely but it can't accurately model the chaos in a real home. Robot farms run continuously but the policies that survive them learn conservative, machine-shaped behaviour, because that is what the fleet was doing while it collected the data.
+
+Egocentric video sits in the middle. People already cook, clean and fold laundry in real environments (their home), so the diversity comes for free. The catch is that almost every large egocentric dataset is monocular and rolling-shutter with no inertial stream attached. Such a dataset cannot give you detailed data about your position in 3D space and the position and size of objects in accurate metric scale. Robotics needs metric scale. The platforms that do capture stereo and inertial data properly are closed, so you cannot reproduce them across a contributor network even if you can afford one.
+
+That gap is the whole reason the device exists. Not to beat Aria on fidelity, but to be the cheapest thing you can defend putting in a dataset paper, and to be buildable by anyone who wants to collect at scale.
+
+## Design constraints
+
+Three constraints drove every decision after that:
+
+1. **Under USD 200 per unit.** Not a marketing number. At twenty five contributors, the difference between $200 and $2,000 a unit decides whether the project is financially viable or not.
+2. **Buildable from parts anyone can order.** No custom silicon, no small-batch PCB fabrication, nothing on six month lead times. Commercially available modules, 3D printable housings, and circuits simple enough that it can be made on proto-boards.
+3. **Wearable for hours by someone who is not an engineer.** If it is annoying to put on, or unclear whether it is recording, you end up with useless man-hours of no recording or contributors tired of using the device. 
+
+The third constraint turned out to shape the design more than the first two.
+
+## The camera decision
+
+The camera came first and constrained everything after it. After testing a lot of different types of cameras from different vendors, I went with a Dexcin USB module carrying two OmniVision global-shutter color image sensors, synchronised in hardware through a single ASIC, running at 30 FPS and 1280×720 per eye with a 126° field of view and a 42 mm baseline. It presents one USB endpoint and delivers a single side-by-side stitched MJPEG frame. It was the perfect balance of quality and cost, while meeting all our requirements.
+
+Four properties made it the right pick, and only one is about image quality.
+
+**Global shutter.** A rolling shutter bakes per-row timing offsets into every frame. That is exactly the error that corrupts visual-inertial estimation when somebody turns their head quickly, which is bound to happen on a head-mounted rig. 
+
+**Hardware sync between the two sensors.** A few milliseconds of drift between left and right destroys depth on anything that moves. The camera module takes care of this itself by using hardware sync channels and an ASIC to govern the entire image capture pipeline, giving us microsecond-level precision in left-right image capture. 
+
+**A single USB endpoint.** Two independent cameras would mean two USB streams to align on a host that is already busy encoding. One stitched frame means the pair arrives together by construction, and becomes easy to encode/decode using traditional encoder blocks on the SoC.
+
+**42 mm baseline with a wide field of view.** This gives reliable depth roughly between 0.5 and 4 metres, which is sufficient for indoor egocentric data.
+
+## Compute, and why encoding on-device mattered
+
+The brain of the device is a Radxa ROCK 5C, chosen for the RK3588S2 SoC. The SoC does MJPEG decode and H.264 encode in silicon, which turned out to be the decision that made long sessions possible at all.
+
+Raw MJPEG off the camera lands at roughly 80 GB per hour. Pushing it through the hardware encoder brings it to about 14 GB, a five times reduction. On a 256 GB card that is the difference between three hours and a full day of capture. It also keeps the CPU cool enough to sustain 30 FPS stereo without thermal throttling, which a software encoder could not do inside a plastic box strapped to somebody's head.
+
+![The recording pipeline, and the split between the Linux SBC and the realtime coprocessor.](/projects/ego-oscar/architecture.png)
+
+## Inertial data and time synchronisation
+
+The IMU is a TDK InvenSense ICM-20948 sampling six axes at 120 Hz over I²C. It is a consumer part and I put it on a swappable footprint deliberately, so anyone who needs higher quality can drop in a higher-quality IMU.
+
+To synchronize the IMU data with the camera stream while also having the overhead of an unpredictable image buffer in the camera pipeline (the only major downside of the camera module), I implemented a custom sync setup where the sync data from the camera is captured using a ESP32 coprocessor, which then subsequently reads IMU data and sends it accordingly with precise timestamps. This, along with a custom offset detection system, enabled us to reliably achieve \<700 us of cam-imu offset even though the camera and the IMU were operating in independent clock domains. 
+
+## The coprocessor, and failing loudly
+
+A SeeedStudio Xiao ESP32-S3 sits alongside the SBC as a watchdog over the Radxa SBC. 
+
+It bridges the clock domains between camera and IMU, which is what makes the inertial stream trustworthy against video frames. It drives the status LEDs. And it runs a watchdog on a 1 Hz UART heartbeat from the Linux side, intervening after two seconds of silence.
+
+The watchdog and the LEDs were integrated after careful testing revealed that we can't keep any error with the SBC silent - the worst failure in the field is not a crash, it is a rig that looks like it is working but its writing nothing, discovered six hours later when a contributor finally ends their work. Everything in this design that seems like polish is really about making failure visible within seconds instead of hours. 
+
+## Wearing it
+
+The whole assembly is 280 g and mounts to a commodity sport visor. The battery, a 10,000 mAh USB-PD bank, goes in a pocket rather than on the head, which buys 5 to 6 hours of capture without putting the weight where it is felt.
+
+There is a single capture button. Contributors press it, watch for the LED, and go about their day.
+
+<Gallery>
+  ![One of our contributors wearing the rig mid-session.](/projects/ego-oscar/worn.jpg)
+  ![Three units undergoing first-time testing.](/projects/ego-oscar/ready.jpg)
+</Gallery>
+
+## Results
+
+The numbers held up better than I expected across a fleet built by hand. Reprojection error stays under 0.03 px per camera, and mean epipolar error across the 13 devices we built came to 0.4 px. Mean cam-imu offset held at ~700 us. 
+
+We deployed 12 devices, and after filtering out all the errors / bad quality videos, ended up with 550 hours of usable video dataset.
+  
+![Dense reconstruction from a single session, camera trajectory in red.](/projects/ego-oscar/reconstruction.png)
+
+For depth we tested both SGBM and RAFT-Stereo. Visual-inertial odometry produced stable trajectories on 12 of 20 held-out sequences, which is an honest number rather than a good one.
+
+## What broke
+
+Across the entire deployment, 96% of sessions produced usable data end to end. Getting there meant finding three failure modes that only appear once hardware leaves the bench.
+
+**Thermal shutdown** under sustained encode, fixed with venting in the enclosure and by keeping the encode on the hardware block.
+
+**SD card I/O errors**, which is what you get when consumer cards meet continuous multi-hour writes.
+
+**Cable strain** at the connector, because the head moves and the wire does not. This one is pure mechanical design and took the most iterations of the three.
+
+The watchdog setup was able to successfully identify and indicate most of these errors.
+
+## The dataset it produced
+
+![Task diversity across the release.](/projects/ego-oscar/tasks.png)
+
+550 hours of synchronised stereo video and IMU, captured across more than 100 environments by 25 contributors. Kitchens, living rooms and some commercial spaces. Each session ships as H.264 MP4 with offset-corrected IMU, its own calibration, and metadata.
+
+It is released annotated rather than raw. There are 209,315 labelled segments covering 460 action verbs, 32,630 object phrases and 57,104 distinct verb and object combinations. The top 20 expressions account for only 1.5% of instances, which is the statistic I find most convincing about it, because it means the long tail is genuine rather than an artefact of a small label vocabulary.
+
+By hours, the largest activities are cooking at 187, general manipulation at 106, dishwashing at 90 and textile work at 54. Everything was collected with informed consent and faces are blurred in the release.
+
+## What I would change
+
+The consumer IMU is the dominant source of pose error, so a better inertial part is the first upgrade. All SLAM and tracking runs offline, which was the right call for a capture device but means the rig gives no live feedback about tracking quality. It trades moisture resistance for weight, so it is an indoor device. And at 280 g it is heavier than it needs to be, mostly because of printed mounts and off-the-shelf modules that a dedicated PCB would collapse into one board.
+
+Worth stating plainly: we did not show that a policy trained on this data beats one trained on existing corpora. That was not the claim. The claim is that this is a defensible substrate you can actually afford to deploy.
+
+## Open source
+
+CAD files, firmware, capture code, a DIY assembly guide and the full dataset are public on GitHub and Hugging Face, along with an interactive 3D viewer for checking how it goes together before you print anything.
+
+[Read the paper](https://arxiv.org/abs/2608.08285) · [FPV Labs write-up](https://www.fpvlabs.ai/essays/ego-oscar)

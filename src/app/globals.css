@@ -103,6 +103,23 @@
     drop-shadow(0 0 7px color-mix(in srgb, var(--terminal) 25%, transparent));
 }
 
+/* Slow breathing outline for the current role: the border eases from its
+   resting colour up to the foreground (white in dark mode) and back. Only the
+   border colour animates, so the card's contents stay still. */
+@keyframes border-breathe {
+  0%,
+  100% {
+    border-color: var(--border);
+  }
+  50% {
+    border-color: var(--foreground);
+  }
+}
+
+@utility border-breathe {
+  animation: border-breathe 3.5s ease-in-out infinite;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

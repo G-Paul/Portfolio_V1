@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { HighlightTag } from "@/components/highlight-tag";
 import { copy } from "@/content/copy";
 import type { Project } from "@/lib/projects";
 
@@ -25,29 +26,37 @@ export function ProjectCard({ project }: { project: Project }) {
 
       {/* No flex-wrap here: the tags wrap inside their own column so the read
           time stays pinned right instead of dropping to a line of its own. */}
-      <div className="mt-auto flex items-end justify-between gap-3 pt-2">
-        <ul className="flex min-w-0 flex-wrap gap-2" aria-label={copy.work.tags}>
-          {project.ongoing ? (
-            <li className="text-mono text-caption inline-flex items-center gap-1.5 border border-terminal px-2 py-0.5 text-terminal">
-              <span
-                aria-hidden="true"
-                className="inline-block h-1.5 w-1.5 rounded-full bg-terminal"
-              />
-              {copy.work.ongoing}
-            </li>
-          ) : null}
-          {project.tags.map((tag) => (
-            <li
-              key={tag}
-              className="text-mono text-caption border border-border px-2 py-0.5 text-muted"
-            >
-              {tag}
-            </li>
-          ))}
-        </ul>
-        <span className="shrink-0 whitespace-nowrap text-mono text-caption text-muted">
-          {project.readingTime} {copy.work.readingTime}
-        </span>
+      <div className="mt-auto flex flex-col gap-3 pt-2">
+        {project.highlight ? (
+          <HighlightTag highlight={project.highlight} />
+        ) : null}
+        <div className="flex items-end justify-between gap-3">
+          <ul
+            className="flex min-w-0 flex-wrap gap-2"
+            aria-label={copy.work.tags}
+          >
+            {project.ongoing ? (
+              <li className="text-mono text-caption inline-flex items-center gap-1.5 border border-terminal px-2 py-0.5 text-terminal">
+                <span
+                  aria-hidden="true"
+                  className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-terminal"
+                />
+                {copy.work.ongoing}
+              </li>
+            ) : null}
+            {project.tags.map((tag) => (
+              <li
+                key={tag}
+                className="text-mono text-caption border border-border px-2 py-0.5 text-muted"
+              >
+                {tag}
+              </li>
+            ))}
+          </ul>
+          <span className="shrink-0 whitespace-nowrap text-mono text-caption text-muted">
+            {project.readingTime} {copy.work.readingTime}
+          </span>
+        </div>
       </div>
     </article>
   );

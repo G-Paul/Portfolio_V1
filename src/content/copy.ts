@@ -19,7 +19,7 @@ export const copy = {
     present: "Present",
     featuredWork: "Featured Work",
     featuredWorkHint:
-      "I have made a bunch of stuff, but here are some that I'm proud of -",
+      "I have made a bunch of stuff. Here are some that I'm proud of -",
     ctaTitle: "I'd like to hear how you work",
     ctaBody:
       "I'm always curious how people in this field think — how they got here, what they're figuring out, what they'd do differently. Tell me about yours and I'll tell you about mine.",
@@ -59,13 +59,12 @@ export const copy = {
   },
   footer: {
     rights: "All rights reserved.",
-    builtWith: "Built with Next.js · Tailwind · TypeScript",
+    lastUpdated: "Last updated:",
   },
   a11y: {
     skipToContent: "Skip to content",
     home: "home",
     primaryNav: "Primary",
-    footerNav: "Footer",
     menu: "Menu",
     siteFooter: "Site footer",
     introduction: "Introduction",

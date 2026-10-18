@@ -6,6 +6,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import remarkUnwrapImages from "remark-unwrap-images";
+import { HighlightTag } from "@/components/highlight-tag";
 import { mdxComponents } from "@/components/mdx";
 import { MediaGallery } from "@/components/media-gallery";
 import { TableOfContents } from "@/components/table-of-contents";
@@ -65,27 +66,32 @@ export default async function ProjectPage({
             <p className="text-body max-w-2xl text-muted">{project.summary}</p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 text-mono text-caption">
-            {project.ongoing ? (
-              <span className="inline-flex items-center gap-1.5 border border-terminal px-2 py-0.5 text-terminal">
-                <span
-                  aria-hidden="true"
-                  className="inline-block h-1.5 w-1.5 rounded-full bg-terminal"
-                />
-                {copy.work.ongoing}
-              </span>
+          <div className="flex flex-col gap-3">
+            {project.highlight ? (
+              <HighlightTag highlight={project.highlight} />
             ) : null}
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="border border-border px-2 py-0.5 text-muted"
-              >
-                {tag}
+            <div className="flex flex-wrap items-center gap-3 text-mono text-caption">
+              {project.ongoing ? (
+                <span className="inline-flex items-center gap-1.5 border border-terminal px-2 py-0.5 text-terminal">
+                  <span
+                    aria-hidden="true"
+                    className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-terminal"
+                  />
+                  {copy.work.ongoing}
+                </span>
+              ) : null}
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="border border-border px-2 py-0.5 text-muted"
+                >
+                  {tag}
+                </span>
+              ))}
+              <span className="text-muted">
+                {project.readingTime} {copy.work.readingTime}
               </span>
-            ))}
-            <span className="text-muted">
-              {project.readingTime} {copy.work.readingTime}
-            </span>
+            </div>
           </div>
         </div>
       </section>

@@ -6,6 +6,8 @@ import matter from "gray-matter";
 const PROJECTS_DIR = path.join(process.cwd(), "src/content/projects");
 const WORDS_PER_MINUTE = 200;
 
+export type ProjectHighlight = { label: string; href: string };
+
 export type Project = {
   slug: string;
   title: string;
@@ -14,6 +16,8 @@ export type Project = {
   /** Still in progress. Shows an "Ongoing" badge on the card and page. */
   ongoing?: boolean;
   tags: string[];
+  /** A filled, linked tag shown above the regular tags (e.g. a paper acceptance). */
+  highlight?: ProjectHighlight;
   /**
    * Manual sort position, lowest first. Optional: anything without one falls
    * to the bottom, ordered by date. Gaps are fine, so numbering in tens leaves
@@ -50,6 +54,11 @@ function parse(fileName: string): Project {
     featured: data.featured === true,
     ongoing: data.ongoing === true,
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
+    highlight:
+      typeof data.highlight?.label === "string" &&
+      typeof data.highlight?.href === "string"
+        ? { label: data.highlight.label, href: data.highlight.href }
+        : undefined,
     order: typeof data.order === "number" ? data.order : undefined,
     date: typeof data.date === "string" ? data.date : "",
     readingTime: Math.max(1, Math.round(words / WORDS_PER_MINUTE)),

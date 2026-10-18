@@ -1,10 +1,13 @@
 ---
 title: Ego-OSCAR
-summary: An open-source, $200 device that can capture stereo-inertial data. Made for FPV Labs.
+summary: An open-source, $200 device that can capture stereo-inertial data. Made with FPV Labs.
 featured: true
 order: 10
 date: 2026-08-01
-tags: [Open Hardware, Stereo Vision, Egocentric Data, Embedded Linux, Paper]
+tags: [Open Hardware, Stereo Vision, Egocentric Data]
+highlight:
+  label: "Accepted: WACV 2027"
+  href: https://wacv.thecvf.com/
 ---
 
 FPV Labs wanted egocentric video at a scale that research-grade hardware makes impossible. Although devices like Project Aria existed for detailed egocentric data capture, getting dozens of units and distributing them to contributors was not possible. Whatever we used had to be cheap enough to lose, and repairable and reproducible by anyone with a 3D printer.
@@ -20,7 +23,7 @@ My work was the device itself: selecting the parts, designing the enclosure, and
 
 For embodied AI the bottleneck has shifted. It used to be model architecture. Now it is data, specifically diverse multimodal data at a scale which nobody has.
 
-Every existing route to that data gives something up. Teleoperation produces beautifully precise trajectories but it does not scale, because a human has to sit there for every hour of it, and you can't usually send a teleop setup with to someone's home. Simulation scales infinitely but it can't accurately model the chaos in a real home. Robot farms run continuously but the policies that survive them learn conservative, machine-shaped behaviour, because that is what the fleet was doing while it collected the data.
+Every existing route to that data gives something up. Teleoperation produces beautifully precise trajectories but it does not scale, because a human has to sit there for every hour of it, and you can't usually send a teleop setup to someone's home. Simulation scales infinitely but it can't accurately model the chaos in a real home. Robot farms run continuously but the policies that survive them learn conservative, machine-shaped behaviour, because that is what the fleet was doing while it collected the data.
 
 Egocentric video sits in the middle. People already cook, clean and fold laundry in real environments (their home), so the diversity comes for free. The catch is that almost every large egocentric dataset is monocular and rolling-shutter with no inertial stream attached. Such a dataset cannot give you detailed data about your position in 3D space and the position and size of objects in accurate metric scale. Robotics needs metric scale. The platforms that do capture stereo and inertial data properly are closed, so you cannot reproduce them across a contributor network even if you can afford one.
 

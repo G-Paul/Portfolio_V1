@@ -51,7 +51,13 @@ function RoleCard({ role, side }: { role: Role; side: "left" | "right" }) {
 
   return (
     <article
-      className={`relative border border-border bg-background p-6 ${CONNECTOR} ${
+      className={`group relative border border-border bg-background p-6 ${
+        role.to ? "" : "border-breathe"
+      } ${
+        role.url
+          ? "transition-colors hover:border-foreground focus-within:border-foreground"
+          : ""
+      } ${CONNECTOR} ${
         side === "left" ? CONNECTOR_LEFT_COLUMN : CONNECTOR_RIGHT_COLUMN
       }`}
     >
@@ -69,7 +75,21 @@ function RoleCard({ role, side }: { role: Role; side: "left" | "right" }) {
         <div className="@container min-w-0 flex-1">
           <div className="flex flex-col gap-1 @min-[17rem]:grid @min-[17rem]:grid-cols-[minmax(0,1fr)_auto] @min-[17rem]:items-baseline @min-[17rem]:gap-x-4">
             <h3 className="text-headline break-words @min-[17rem]:col-start-1 @min-[17rem]:row-start-1">
-              {role.company}
+              {role.url ? (
+                // The ::after stretches the link over the whole card. It has
+                // to live on the link, since the article's own ::before and
+                // ::after already draw the timeline connector.
+                <a
+                  href={role.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="outline-none transition-colors group-hover:text-terminal after:absolute after:inset-0 after:content-['']"
+                >
+                  {role.company}
+                </a>
+              ) : (
+                role.company
+              )}
             </h3>
             <p className="text-body text-muted @min-[17rem]:col-start-1 @min-[17rem]:row-start-2">
               {role.title}
